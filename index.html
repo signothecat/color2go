@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title data-i18n="metaPageTitle">文字色と背景色の組み合わせ生成</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400..600,0..1,-25..200&icon_names=block,cached,check,content_copy,dark_mode,favorite,keyboard_arrow_down,language,light_mode,link,multiple_stop"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300..700,0,-25..0&icon_names=text_fields"
+    />
+    <link rel="stylesheet" href="/common.css?v=2025-09-17-v1" />
+    <link rel="stylesheet" href="/app.css?v=2025-09-17-v1" />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="header-wrapper container">
+        <div class="navigation">
+          <div class="site-icon"><img src="/assets/icon.jpg" height="30px" /></div>
+          <h1>signolabo</h1>
+        </div>
+        <div class="page-config">
+          <button
+            id="themeToggle"
+            class="icon-btn pointer"
+            type="button"
+            aria-label="テーマ切替"
+            aria-pressed="false"
+            aria-expanded="false"
+            aria-haspopup="menu"
+            title="テーマ切替"
+          >
+            <span class="material-symbols-rounded icon-sun icon-filled">light_mode</span>
+            <span class="material-symbols-rounded icon-moon icon-filled">dark_mode</span>
+          </button>
+          <div class="lang-toggle-container">
+            <button id="langToggle" class="lang-btn pointer" type="button" aria-label="テーマ切替" aria-pressed="false" title="テーマ切替">
+              <span class="material-symbols-rounded icon-lang">language</span>
+              <span class="material-symbols-rounded icon-chevron-down">keyboard_arrow_down</span>
+            </button>
+            <ul id="langList" class="lang-list" role="menu">
+              <li class="lang-list-child"><button id="lang-en" class="lang-choice" role="menuitem" data-lang="en">English</button></li>
+              <li class="lang-list-child"><button id="lang-ja" class="lang-choice" role="menuitem" data-lang="ja">日本語</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app">
+      <div class="main container">
+        <div class="content">
+          <div class="content-title">
+            <h1 data-i18n="h1AppTitle">文字色と背景色の組み合わせ生成</h1>
+          </div>
+
+          <!-- ① 読みやすさチェック -->
+          <section class="panel" aria-labelledby="score-title">
+            <div class="score-container">
+              <div class="score-card">
+                <div class="contrast-value-container">
+                  <div class="contrast-value-before" data-i18n="labelContrastRatio">コントラスト比</div>
+                  <div id="contrastValue" class="contrast-value">--</div>
+                  <div class="contrast-value-small">
+                    <small data-i18n="smallContrastRatioRange">(最小1:1、最大21:1)</small>
+                  </div>
+                </div>
+                <div id="criteria" class="criteria-grid">
+                  <!-- grid 1-1 -->
+                  <div class="criteria-label-wrapper">
+                    <span class="material-symbols-outlined icon-heading">text_fields</span>
+                    <div class="criteria-label" data-i18n="labelHeadingCriteria">見出しに適しているか？</div>
+                    <div class="criteria-label-short" data-i18n="labelHeadingCriteriaShort">見出しの見やすさ</div>
+                  </div>
+                  <!-- grid 1-2 -->
+                  <div class="criteria-container">
+                    <div class="aa-criteria-container" id="headingAAContainer">
+                      <!-- 3:1 -->
+                      <div class="label">AA</div>
+                      <div id="headingAA" class="judge-icon-container">--</div>
+                    </div>
+                    <div class="aaa-criteria-container" id="headingAAAContainer">
+                      <!-- 4.5:1 -->
+                      <div class="label">AAA</div>
+                      <div id="headingAAA" class="judge-icon-container">--</div>
+                    </div>
+                  </div>
+                  <!-- grid 2-1 -->
+                  <div class="criteria-label-wrapper">
+                    <span class="material-symbols-outlined icon-body">text_fields</span>
+                    <div class="criteria-label" data-i18n="labelBodyCriteria">本文に適しているか？</div>
+                    <div class="criteria-label-short" data-i18n="labelBodyCriteriaShort">本文の見やすさ</div>
+                  </div>
+                  <!-- grid 2-2 -->
+                  <div class="criteria-container">
+                    <div class="aa-criteria-container" id="bodyAAContainer">
+                      <!-- 4.5:1 -->
+                      <div class="label">AA</div>
+                      <div id="bodyAA" class="judge-icon-container">--</div>
+                    </div>
+                    <div class="aaa-criteria-container" id="bodyAAAContainer">
+                      <!-- 7:1 -->
+                      <div class="label">AAA</div>
+                      <div id="bodyAAA" class="judge-icon-container">--</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ② プレビュー -->
+          <section class="panel" aria-labelledby="preview-title">
+            <div class="preview-grid">
+              <div class="preview-ab">
+                <!-- A/B -->
+                <div class="card">
+                  <div id="previewTextA" class="preview-text" role="img" aria-label="背景が色A、文字が色Bの例">
+                    <h3 class="prev-h-long">Lorem Ipsum</h3>
+                    <h3 class="prev-h-short">Lorem</h3>
+                    <div class="lorem-long">
+                      Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad
+                      minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+                    </div>
+                    <div class="lorem-medium">
+                      Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                    </div>
+                    <div class="lorem-short">Lorem ipsum dolor sit amet, consec tetur adip isci elit, sed eius mod.</div>
+                    <div class="preview-shape" id="previewShapeA" aria-label="背景が色A、円が色Bの例">
+                      <div class="dot" id="dotB"></div>
+                      <div class="triangle" id="triangleB"></div>
+                      <div class="square" id="squareB"></div>
+                      <div class="star" id="starB"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="preview-ba">
+                <!-- B/A -->
+                <div class="card">
+                  <div id="previewTextB" class="preview-text" role="img" aria-label="背景が色B、文字が色Aの例">
+                    <h3 class="prev-h-long">Lorem Ipsum</h3>
+                    <h3 class="prev-h-short">Lorem</h3>
+                    <div class="lorem-long">
+                      Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad
+                      minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+                    </div>
+                    <div class="lorem-medium">
+                      Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                    </div>
+                    <div class="lorem-short">Lorem ipsum dolor sit amet, consec tetur adip isci elit, sed eius mod.</div>
+                    <div class="preview-shape" id="previewShapeB" aria-label="背景が色B、円が色Aの例">
+                      <div class="dot" id="dotA"></div>
+                      <div class="triangle" id="triangleA"></div>
+                      <div class="square" id="squareA"></div>
+                      <div class="star" id="starA"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ③ 色指定 -->
+          <section class="sub-panel" aria-labelledby="input-title">
+            <div class="color-assign-container">
+              <div class="color-input">
+                <div class="inputs">
+                  <div class="color-picker-container">
+                    <input type="color" class="color-picker pointer" id="pickerA" value="#4caf50" />
+                  </div>
+                  <div class="hex-input-container">
+                    <div>
+                      <div class="hex-input-label" data-i18n="labelHexA">16進数カラーコード</div>
+                      <div class="hex-input-line">
+                        <input type="text" class="hex-input" id="hexA" value="#4caf50" inputmode="latin" aria-label="色AのHEX" />
+                        <button id="copyA" class="copy-button pointer" type="button">
+                          <span class="material-symbols-rounded icon-copy">content_copy</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="shuffle-button-container">
+                      <button id="shuffleA" class="shuffle-button pointer" type="button">
+                        <span class="material-symbols-rounded icon-shuffle" aria-hidden="true">cached</span>
+                        <span class="shuffle-label" data-i18n="btnRandomA">ランダム生成</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="color-input">
+                <div class="inputs">
+                  <div class="color-picker-container">
+                    <input type="color" class="color-picker pointer" id="pickerB" value="#ffffff" />
+                  </div>
+                  <div class="hex-input-container">
+                    <div>
+                      <div class="hex-input-label" data-i18n="labelHexB">16進数カラーコード</div>
+                      <div class="hex-input-line">
+                        <input type="text" class="hex-input" id="hexB" value="#ffffff" inputmode="latin" aria-label="色BのHEX" />
+                        <button id="copyB" class="copy-button pointer" type="button">
+                          <span class="material-symbols-rounded icon-copy">content_copy</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="shuffle-button-container">
+                      <button id="shuffleB" class="shuffle-button pointer" type="button">
+                        <span class="material-symbols-rounded icon-shuffle" aria-hidden="true">cached</span>
+                        <span class="shuffle-label" data-i18n="btnRandomB">ランダム生成</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="inputError" role="alert" class="error" aria-live="polite"></div>
+
+            <div class="tools-container row">
+              <!-- 色の左右入れ替えボタン -->
+              <div class="swap-container-wrapper">
+                <div class="swap-button-container">
+                  <button id="swapColors" class="swap-button pointer" type="button">
+                    <span class="material-symbols-rounded icon-swap" aria-hidden="true">multiple_stop</span>
+                    <span class="swap-label" data-i18n="swapColors">色入れ替え</span>
+                  </button>
+                </div>
+              </div>
+              <!-- 2色ランダム生成ボタン -->
+              <div class="shuffle-all-container-wrapper">
+                <div class="shuffle-all-button-container">
+                  <button id="shuffleAll" class="shuffle-all-button pointer" type="button">
+                    <span class="material-symbols-rounded icon-shuffle" aria-hidden="true">cached</span>
+                    <span class="shuffle-all-label" data-i18n="btnRandom2">ランダム生成</span>
+                  </button>
+                </div>
+              </div>
+              <!-- お気に入りボタン -->
+              <div class="favorite-container-wrapper">
+                <div class="favorite-button-container">
+                  <button id="addFavorite" class="favorite-button pointer" type="button">
+                    <span class="material-symbols-rounded icon-favorite" aria-hidden="true">favorite</span>
+                    <span class="favorite-label" data-i18n="btnFavorite">お気に入り</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- URLコピー用 -->
+            <div class="url-container">
+              <div class="url-wrapper">
+                <input id="urlInput" class="url-input" readonly />
+                <button id="copyUrl" class="url-copy-button pointer" type="button">
+                  <span class="material-symbols-rounded icon-url" aria-hidden="true">link</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ④ ツール説明 -->
+          <section class="panel logic-container">
+            <h2>ツール概要</h2>
+            <div class="logic">
+              <!-- 概要 -->
+              <p>文字色(前景色)と背景色を指定し、指定色におけるコントラスト比と、文字の可読性(見やすさ・読みやすさ)を確認できるツールです。</p>
+              <p>文字色と背景色はランダム生成もできるので、2色の組み合わせを探したいときにも使えます。</p>
+            </div>
+          </section>
+
+          <section class="panel logic-container">
+            <h2>読みやすさ判定の仕組み</h2>
+            <div class="logic">
+              <p>読みやすさ判定には<strong>コントラスト比</strong>を用います。</p>
+              <p>AA(＝見やすい)、AAA(＝とても見やすい)、の2つのレベルで判定します。</p>
+              <p>アクセシビリティの観点では、まずは<strong>AA</strong>の達成を目指すのが一般的です。</p>
+              <div class="line-spacer"></div>
+
+              <!-- 判定のしきい値 -->
+              <p>AA・AAAで必要とされる文字色と背景色のコントラスト比は、以下の通りです。</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>AA</th>
+                    <th>AAA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>見出し<small>※</small></td>
+                    <td>3:1以上</td>
+                    <td>4.5:1以上</td>
+                  </tr>
+                  <tr>
+                    <td>本文</td>
+                    <td>4.5:1以上</td>
+                    <td>7:1以上</td>
+                  </tr>
+                </tbody>
+              </table>
+              <small>※18pt(約24px)以上の通常の太さのテキスト、または14pt(約18.66px)以上の太字のテキスト。</small>
+            </div>
+          </section>
+
+          <!-- ⑤ 算出方法の解説 -->
+          <section class="panel logic-container">
+            <h2>コントラスト比の算出方法</h2>
+            <div class="logic">
+              <ol>
+                <li>
+                  HEX(16進数カラーコード)を、sRGBの0〜255の整数値に変換します。
+                  <ul>
+                    <li>#4caf50 なら、<code>R = 76</code>, <code>G = 175</code>, <code>B = 80</code> となる</li>
+                  </ul>
+                </li>
+                <li>
+                  sRGBの各値を0〜1に正規化し、それぞれ<code>r</code>, <code>g</code>, <code>b</code>とします。
+                  <ul>
+                    <li><code>r = 76 / 255 ≈ 0.298</code></li>
+                    <li><code>g = 175 / 255 ≈ 0.686</code></li>
+                    <li><code>b = 80 / 255 ≈ 0.314</code></li>
+                  </ul>
+                </li>
+                <li>
+                  sRGBをRGBにするため、<code>r</code>, <code>g</code>, <code>b</code>から<code>r_lin</code>, <code>g_lin</code>,
+                  <code>b_lin</code>を出します。
+                  <ul>
+                    <li><code>r_lin = (r ≤ 0.04045) ? r / 12.92 : ((r + 0.055) / 1.055) ^ 2.4</code></li>
+                    <li>
+                      <small><code>g</code>, <code>b</code>も同様に計算します。</small>
+                    </li>
+                    <li>
+                      <small
+                        >普段ディスプレイ上で見ているsRGB色空間では、RGB色空間に対してガンマ補正というものがかかっています。上の式でガンマ補正を取り除くことで、sRGB→RGBに変換します。</small
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  相対輝度<code>L</code>を算出します。
+                  <ul>
+                    <li><code>L = 0.2126 × r_lin + 0.7152 × g_lin + 0.0722 × b_lin</code></li>
+                  </ul>
+                </li>
+                <li>
+                  2色のうち明るい方の色の相対輝度Lを<code>L1</code>、暗い方の色の相対輝度Lを<code>L2</code>として、コントラスト比を算出します。(1.00〜21.00の値の範囲)
+                  <ul>
+                    <li><code>コントラスト比 = (L1 + 0.05) / (L2 + 0.05)</code></li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- ⑥ 参考リンク -->
+          <section class="panel logic-container">
+            <h2>参考リンク</h2>
+            <div class="logic">
+              <ul>
+                <li>
+                  WCAGガイドライン
+                  <ul>
+                    <li>
+                      <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum" target="_blank" rel="noopener noreferrer">
+                        1.4.3 Contrast (Minimum)(AA)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.w3.org/TR/WCAG22/#contrast-enhanced" target="_blank" rel="noopener noreferrer">
+                        1.4.6 Contrast (Enhanced)(AAA)
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script src="/i18n.js?v=2025-09-17-v1"></script>
+    <script src="/app.js?v=2025-09-17-v1"></script>
+  </body>
+</html>

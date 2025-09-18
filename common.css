@@ -1,0 +1,400 @@
+html {
+  touch-action: manipulation;
+}
+
+/* -------------------- */
+/* ライト・ダークモード切替 */
+/* -------------------- */
+
+/* ライトモード(通常)用の色を設定 */
+:root {
+  --main-text: #1a1a1a;
+  --main-text-light: #303030;
+  --main-bg: #fafafa;
+  --main-bg-light: #dadada;
+  --main-border: #4e4e4e;
+  --main-border-light: #818181;
+  --sub-text: #5b5b5b;
+  --btn-text-strong: #1a1a1a;
+  --btn-color-strong: #fafafa;
+  --btn-color-hover: #dddddd;
+  --btn-color-hover-strong: #dddddd;
+  color-scheme: light; /* ブラウザUIの色調整 */
+}
+
+/* ダークモード用の色を設定 */
+:root[data-theme="dark"] {
+  --main-text: #e0e0e0;
+  --main-text-light: #cdcdcd;
+  --main-bg: #121212;
+  --main-bg-light: #252525;
+  --main-border: #a5a5a5;
+  --main-border-light: #848484;
+  --sub-text: #b0b0b0;
+  --btn-text-strong: #e0e0e0;
+  --btn-color-strong: #1b1b1b;
+  --btn-color-hover: #454545;
+  --btn-color-hover-strong: #696969;
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] .icon-filled {
+  font-variation-settings: "FILL" 1;
+}
+
+/* ------------------- */
+/* ----- 共通設定 ----- */
+/* ------------------- */
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 880px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+@media (max-width: 767.98px) {
+  .container {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+@media (max-width: 575.98px) {
+  .container {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
+
+.content .panel {
+  margin: 8px 0 5px 0;
+  min-width: 300px;
+  /* border: solid 1px; */
+}
+
+.content .sub-panel {
+  margin: 8px 0 5px 0;
+  min-width: 300px;
+  /* border: solid 1px; */
+}
+
+/* ------------------- */
+/* ----- ヘッダー ----- */
+/* ------------------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  height: 52px;
+  padding: 5px 0px;
+  background-color: var(--main-bg);
+  box-shadow: 0 1px 2px rgba(77, 77, 77, 0.25);
+  z-index: 1;
+}
+@media (max-width: 575.98px) {
+  .header {
+    height: 40px;
+  }
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header .navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-icon {
+  height: 36px;
+  width: 36px;
+  margin: 5px;
+}
+.site-icon > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 18px;
+}
+@media (max-width: 575.98px) {
+  .site-icon {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+.header h1 {
+  font-size: 22px;
+  padding: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+@media (max-width: 575.98px) {
+  .header h1 {
+    font-size: 20px;
+  }
+}
+
+.page-config {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* 上下中央揃え */
+  gap: 8px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--main-bg);
+  color: var(--main-text);
+  line-height: 1;
+}
+@media (max-width: 575.98px) {
+  .icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.icon-btn:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0px;
+}
+
+@media (hover: hover) {
+  .icon-btn:hover {
+    background-color: var(--btn-color-hover);
+  }
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 38px;
+  padding-left: 5px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--main-bg);
+  color: var(--main-text);
+  line-height: 1;
+}
+@media (max-width: 575.98px) {
+  .lang-btn {
+    height: 28px;
+  }
+}
+.lang-btn:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0px;
+}
+@media (hover: hover) {
+  .lang-btn:hover {
+    background-color: var(--btn-color-hover);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .icon-lang, .icon-chevron-down {
+    font-variation-settings: "opsz" 20;
+  }
+}
+
+.lang-list {
+  display: none;
+  position: absolute;
+  top: 100%; /* ボタンの下に表示 */
+  right: 0; /* 右揃え */
+  text-align: right;
+  list-style: none;
+  background: var(--main-bg);
+  border: solid 0.5px var(--main-border);
+  border-radius: 8px;
+  z-index: 1000;
+}
+.lang-choice {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 14px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--main-text);
+}
+.lang-choice.is-active {
+  font-weight: bold;
+  font-weight: 900;
+  /* background-color: var(--btn-color-hover); */
+}
+@media (hover: hover) {
+  .lang-choice:hover {
+    background-color: var(--btn-color-hover);
+  }
+}
+
+/* アイコンの表示切替 */
+.icon-moon {
+  display: none;
+}
+html[data-theme="dark"] .icon-sun {
+  display: none;
+}
+html[data-theme="dark"] .icon-moon {
+  display: inline;
+}
+
+.icon-sun {
+  font-variation-settings: "wght" 400, "GRAD" 200, "opsz" 24;
+}
+.icon-moon {
+  font-variation-settings: "wght" 400, "GRAD" 0, "opsz" 24;
+}
+@media (max-width: 575.98px) {
+  .icon-sun,
+  .icon-moon {
+    font-variation-settings: "opsz" 20;
+  }
+}
+
+/* -------------------------- */
+/* ----- メインコンテンツ ----- */
+/* -------------------------- */
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--main-text);
+  background-color: var(--main-bg);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  /* はみ出し防止 */
+  min-width: 0;
+  gap: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* 子要素flexが大きくても縮むように */
+  min-width: 0;
+  padding-bottom: 200px;
+}
+
+.content-title {
+  margin: 12px 0 0 4px;
+}
+
+.content-title h1 {
+  font-size: 24px;
+}
+@media (max-width: 575.98px) {
+  .content-title h1 {
+    font-size: 22px;
+  }
+}
+
+.content h2 {
+  flex: 1;
+  font-size: 20px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 3px;
+  border-bottom: solid 0.5px var(--main-text);
+}
+
+.sidebar {
+  flex: 0 0 200px;
+}
+
+.sidebar-title {
+  margin: 10px 5px;
+}
+
+.sidebar h3 {
+  margin-left: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.sidebar h3 {
+  margin-left: 10px;
+}
+
+.sidebar .sidebar-section {
+  padding: 5px;
+  margin: 10px 0;
+  border: solid 1px var(--main-text);
+}
+
+.input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.line-spacer {
+  height: 18px;
+}
+
+/* 表 */
+:is(td,th) {
+  border: solid 1px var(--main-border-light);
+  padding: .5ch 1ch;
+}
+table {
+  border-collapse: collapse;
+  font-family: system-ui;
+  margin-top: 12px;
+}
+caption{
+  margin-block: 1rlh;
+}
+tr:nth-of-type(even) { background: var(--main-bg-light); }
+
+small {
+  color: gray;
+}

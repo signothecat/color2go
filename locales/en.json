@@ -1,0 +1,19 @@
+{
+  "metaPageTitle": "Accessible Color Picker",
+  "h1AppTitle": "Accessible Color Picker",
+
+  "labelContrastRatio": "Contrast ratio",
+  "smallContrastRatioRange": "(min 1:1, max 21:1)",
+
+  "labelHeadingCriteria": "Suitable for headings?",
+  "labelBodyCriteria": "Suitable for body text?",
+
+  "labelHexA": "Hex color code",
+  "labelHexB": "Hex color code",
+
+  "btnRandomA": "Random color",
+  "btnRandomB": "Random color",
+  "swapColors": "Swap",
+  "btnRandom2": "Random",
+  "btnFavorite": "Add favorite"
+}
