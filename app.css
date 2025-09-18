@@ -419,7 +419,7 @@ input[type="color"]::-webkit-color-swatch {
   justify-content: center;
 }
 .hex-input {
-  width: 12rem;
+  width: 14rem;
   height: 40px;
   padding: 0 40px 0 10px; /* 右側にボタンの分だけ余白を空ける */
   font-size: 22px;
@@ -499,11 +499,13 @@ input[type="color"]::-webkit-color-swatch {
 
 .tools-container {
   margin-top: 14px;
-  justify-content: center;
+  justify-self: center;
+  justify-content: space-between;
   gap: 6px;
 }
 @media (max-width: 575.98px) {
   .tools-container {
+    /* min-width: 320px; */
     margin-top: 8px;
   }
 }
@@ -596,13 +598,15 @@ input[type="color"]::-webkit-color-swatch {
 
 .url-container {
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
+  justify-self: center;
+  width: 418px;
   margin-top: 12px;
 }
 @media (max-width: 575.98px) {
   .url-container {
+    width: 340px;
     margin-top: 6px;
   }
 }
@@ -612,13 +616,14 @@ input[type="color"]::-webkit-color-swatch {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
   gap: 4px;
 }
 .url-input {
   height: 2rem;
-  width: 23rem;
+  width: 100%;
   font-size: 14px;
-  padding: 0 0 0 10px;
+  padding: 0 36px 0 10px; /* 左側にボタンの分だけ余白 */
   border: solid 0.5px var(--main-border);
   border-radius: 8px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -626,8 +631,8 @@ input[type="color"]::-webkit-color-swatch {
 }
 @media (max-width: 575.98px) {
   .url-input {
-    width: 22rem;
-    font-size: 12px;
+    width: 100%;
+    font-size: 11px;
   }
 }
 
