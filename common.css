@@ -95,7 +95,7 @@ html[data-theme="dark"] .icon-filled {
   align-items: center;
   position: sticky;
   top: 0;
-  height: 52px;
+  height: 54px;
   padding: 5px 0px;
   background-color: var(--main-bg);
   box-shadow: 0 1px 2px rgba(77, 77, 77, 0.25);
@@ -122,30 +122,37 @@ html[data-theme="dark"] .icon-filled {
 }
 
 .site-icon {
-  height: 36px;
-  width: 36px;
-  margin: 5px;
+  height: 34px;
+  width: 34px;
+  margin: 4px;
 }
-.site-icon > img {
+.site-icon a {
+  display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 18px;
+  text-decoration: none;
+}
+.site-icon a img {
+  height: 100%;
+  width: 100%;
+  border-radius: 17px;
+  display: block;
 }
 @media (max-width: 575.98px) {
   .site-icon {
-    height: 28px;
-    width: 28px;
+    height: 26px;
+    width: 26px;
   }
 }
 
 .header h1 {
-  font-size: 22px;
+  font-size: 20px;
   padding: 4px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 @media (max-width: 575.98px) {
   .header h1 {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
