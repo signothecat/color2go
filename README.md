@@ -1,11 +1,12 @@
-# color2go
+# color2go 🎨
 
-The easy way to find text and background colors.  
+The easy way to find text and background colors  
 
 <img width="70%" alt="2025-09-18-v1" src="https://github.com/user-attachments/assets/a84c8c93-52f5-4208-bc30-03461171ead2" />
 
 ## Demo
-Try demo on Vercel 👉 [https://color2go.vercel.app](https://color2go.vercel.app)
+Try demo on Vercel 👇  
+[https://color2go.vercel.app](https://color2go.vercel.app)
 
 ## Feature
 - Responsive design – works seamlessly on mobile and desktop
