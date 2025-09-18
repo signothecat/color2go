@@ -1,6 +1,6 @@
 {
-  "metaPageTitle": "Accessible Color Picker",
-  "h1AppTitle": "Accessible Color Picker",
+  "metaPageTitle": "color2go",
+  "h1AppTitle": "color2go",
 
   "labelContrastRatio": "Contrast ratio",
   "smallContrastRatioRange": "(min 1:1, max 21:1)",
