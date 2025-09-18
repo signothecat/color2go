@@ -2,7 +2,7 @@
 
 The easy way to find text and background colors.  
 
-<img width="50%" alt="2025-09-18-v1" src="https://github.com/user-attachments/assets/a84c8c93-52f5-4208-bc30-03461171ead2" />
+<img width="70%" alt="2025-09-18-v1" src="https://github.com/user-attachments/assets/a84c8c93-52f5-4208-bc30-03461171ead2" />
 
 ## Demo
 Try demo on Vercel 👉 [https://color2go.vercel.app](https://color2go.vercel.app)
