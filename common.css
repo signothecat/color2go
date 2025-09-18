@@ -126,7 +126,7 @@ html[data-theme="dark"] .icon-filled {
   align-items: center;
   gap: 8px;  /* アイコンと文字のgap */
   text-decoration: none;
-  padding: 6px 8px;
+  padding: 6px 8px 6px 4px;
   border-radius: 8px;
 }
 .navigation-a:focus-visible {
